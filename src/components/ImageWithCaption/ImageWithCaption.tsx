@@ -1,7 +1,4 @@
 import * as React from 'react'
-import {
- Image
-} from '@dailybruin/lux'
 
 //felt like this was too simple, but we weren't sure really how we would implement states or props into this one
 
