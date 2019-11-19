@@ -1,15 +1,29 @@
 import * as React from 'react'
+import { css } from 'react-emotion'
 
-//felt like this was too simple, but we weren't sure really how we would implement states or props into this one
+interface PullQuoteProps {
+  /** Text for the poll quote */
+  text: string
+  /** Custom css for poll quote */
+  style?: string
+}
 
-class ImageWithCaption extends React.Component {
-    render() {
-      return (
-        <figure>
-            <img>src="https://i.pinimg.com/originals/97/f4/56/97f4562ab00502f380a77903f6666113.jpg"
-            width="600" height="540" alt="Bald Eagle"</img>
-            <figcaption>Bald Eagle</figcaption>
-        </figure>
-      );
-    }
-  }
+export default function PullQuote(props: PullQuoteProps) {
+  const pullQuoteStyle = css`
+    display: flex;
+    ${props.style};
+  `
+  return (
+    <div className={pullQuoteStyle}>
+      <h1>“</h1>
+      <div
+        className={css`
+          margin-left: 10px;
+          width: calc(100% - 100px);
+        `}
+      >
+        {props.text}
+      </div>
+    </div>
+  )
+}
