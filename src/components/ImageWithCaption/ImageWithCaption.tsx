@@ -1,29 +1,32 @@
 import * as React from 'react'
 import { css } from 'react-emotion'
 
-interface PullQuoteProps {
-  /** Text for the poll quote */
-  text: string
-  /** Custom css for poll quote */
+export interface ImageProps {
+  url: string
+  caption: string
+  credit: string
+  alt: string
+  /** Custom css for the image component */
   style?: string
 }
 
-export default function PullQuote(props: PullQuoteProps) {
-  const pullQuoteStyle = css`
-    display: flex;
-    ${props.style};
-  `
+export default function Image(props: ImageProps) {
+  if (!props.alt) {
+    throw new Error('Image requires a meaningful `alt` value.')
+  }
   return (
-    <div className={pullQuoteStyle}>
-      <h1>“</h1>
-      <div
+    <figure className={props.style}>
+      <img
         className={css`
-          margin-left: 10px;
-          width: calc(100% - 100px);
+          width: 100%;
+          margin-bottom: 0;
         `}
-      >
-        {props.text}
-      </div>
-    </div>
+        src={props.url}
+        alt={props.alt}
+      />
+      <figcaption>
+        {props.caption} ({props.credit})
+      </figcaption>
+    </figure>
   )
 }
